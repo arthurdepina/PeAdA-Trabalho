@@ -8,7 +8,10 @@
 int busca_dicionario(char **vetor_palavras, char *palavra){
     for(int i = 0; i < 100; i++){
         if(vetor_palavras[i] == NULL){
-            break;
+          break;
+        }
+        if(strcmp(vetor_palavras[i], palavra) == 0){
+          return 0;
         }
     }
     return 1;

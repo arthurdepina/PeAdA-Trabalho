@@ -5,22 +5,8 @@
 
 #define MAX_LEN 50
 
-int busca_dicionario(char **vetor_palavras, char *palavra, int i){
-    if(vetor_palavras[i] == NULL){
-        return 1;
-    }
-    if(strcmp(vetor_palavras[i], palavra) == 0){
-        return 0;
-    }
-    return busca_dicionario(vetor_palavras, palavra, i+1);
-}
+int busca_dicionario() {
 
-void insere_palavra(char **lista_palavras, char *palavra, int tamanho_lista){
-    if(strcmp(lista_palavras[0], palavra) >= 0){
-        for(int i = tamanho_lista; i > 0; i--){
-            lista_palavras[i] = lista_palavras[i - 1];
-        }
-    }
 }   
 
 int main(){
@@ -40,7 +26,7 @@ int main(){
             for(int i = 0; i < strlen(temp); i++){
                 temp[i] = tolower(temp[i]);
             }
-            if(busca_dicionario(palavras, temp, 0)){
+            if(busca_dicionario(palavras, temp, 0, count - 1)){
                 palavras[count] = malloc((strlen(temp)+1) * sizeof(char));
                 strcpy(palavras[count], temp);
                 count++;

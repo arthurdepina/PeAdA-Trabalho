@@ -62,6 +62,15 @@ int main(){
         }
     }
 
+    char ultima_linha[] = "total de palavras diferentes no dicionario: ";
+
+    FILE *dicionario;
+    dicionario = fopen("dicionario.txt", "w");
+    for(int i = 0; i < count; i++){
+        fprintf(dicionario, "%s\n", palavras[i]);
+    }
+    fprintf(dicionario, "%s%d\n", ultima_linha, count);
+
     for(int i = 0; i < count; i++){
         printf("%s\n", palavras[i]);
     }
@@ -70,6 +79,7 @@ int main(){
         free(palavras[i]);
     }
     fclose(livro);
+    fclose(dicionario);
     free(palavras);
     return 0;
 }

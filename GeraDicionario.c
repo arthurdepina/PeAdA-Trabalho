@@ -12,7 +12,7 @@ int busca_dicionario(char **vetor_palavras, char *palavra, int inicio, int fim){
     int meio = (inicio + fim) / 2;
     if (strcmp(vetor_palavras[meio], palavra) == 0) {
         return 0;
-    } else if (strcmp(vetor_palavras[meio], palavra) > 0) {
+    } else if (strcmp(vetor_palavras[meio], palavra) < 0) {
         return busca_dicionario(vetor_palavras, palavra, inicio, meio - 1);
     } else {
         return busca_dicionario(vetor_palavras, palavra, meio + 1, fim);
@@ -30,7 +30,7 @@ void insere_palavra(char **palavras, char *palavra, int pos, int count) {
         palavras[count] = strdup(palavra);
         return;
     }
-    if (strcmp(palavra, palavras[pos]) < 0) {
+    if (strcmp(palavra, palavras[pos]) > 0) { // Alterada a condição aqui
         for (int i = count; i > pos; i--) {
             palavras[i] = palavras[i - 1];
         }
@@ -55,7 +55,7 @@ int main(){
     while(fscanf(livro, "%s", temp) != EOF && count < 100){
         if (strcmp(temp, ".") != 0) {
             paraMinusculas(temp);
-            if(busca_dicionario(palavras, temp, 0, count-1)){
+            if(busca_dicionario(palavras, temp, 0, count-1)){ // Se a palavra não foi encontrada
                 insere_palavra(palavras, temp, 0, count);
                 count++;
             }

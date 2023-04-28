@@ -19,8 +19,10 @@ int busca_dicionario(char **vetor_palavras, char *palavra, int inicio, int fim){
     }
 }
 
-void insere_palavra(char **vetor_palavras, char *palavra){
-    
+void paraMinusculas(char *str) {
+    for(int i = 0; str[i]; i++) {
+        str[i] = tolower(str[i]);
+    }
 }
 
 int main(){
@@ -30,18 +32,15 @@ int main(){
 
     livro = fopen("texto.txt", "r");
     if (livro == NULL){
-        printf("Erro");
+        printf("Erro ao abrir o arquivo");
         exit(1);
     }
 
     char **palavras = malloc(100 * sizeof(char*));
     while(fscanf(livro, "%s", temp) != EOF && count < 100){
         if (strcmp(temp, ".") != 0) {
-            for(int i = 0; i < strlen(temp); i++){
-                temp[i] = tolower(temp[i]);
-            }
+            paraMinusculas(temp);
             if(busca_dicionario(palavras, temp, 0, count-1)){
-                // desloca as palavras maiores para o final do vetor
                 int j = count - 1;
                 while (j >= 0 && strcmp(palavras[j], temp) > 0) {
                     palavras[j+1] = palavras[j];

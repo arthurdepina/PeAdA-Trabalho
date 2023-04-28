@@ -25,6 +25,10 @@ void paraMinusculas(char *str) {
     }
 }
 
+void insere_palavra(char **palavras, char *palavra){
+
+}
+
 int main(){
     FILE *livro;
     char temp[MAX_LEN];
@@ -42,12 +46,7 @@ int main(){
             paraMinusculas(temp);
             if(busca_dicionario(palavras, temp, 0, count-1)){
                 int j = count - 1;
-                while (j >= 0 && strcmp(palavras[j], temp) > 0) {
-                    palavras[j+1] = palavras[j];
-                    j--;
-                }
-                palavras[j+1] = malloc((strlen(temp)+1) * sizeof(char));
-                strcpy(palavras[j+1], temp);
+                insere_palavra(palavras, temp);
                 count++;
             }
         }

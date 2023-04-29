@@ -71,9 +71,11 @@ int main(){
     }
     fprintf(dicionario, "%s%d\n", ultima_linha, count);
 
+    /*
     for(int i = 0; i < count; i++){
         printf("%s\n", palavras[i]);
     }
+    */
 
     for(int i = 0; i < count; i++){
         free(palavras[i]);
